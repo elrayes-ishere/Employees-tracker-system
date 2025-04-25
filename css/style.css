@@ -1,0 +1,262 @@
+/* Main Styles */
+/* Import will be handled by the HTML file */
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--body-bg);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  line-height: var(--line-height-normal);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+}
+
+h2 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+h3 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+p {
+  margin-bottom: var(--spacing-4);
+}
+
+svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+button svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Utility Classes */
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-tertiary {
+  color: var(--text-tertiary);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.text-danger {
+  color: var(--color-danger);
+}
+
+.text-warning {
+  color: var(--color-warning);
+}
+
+.text-primary-color {
+  color: var(--color-primary);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-2 {
+  gap: var(--spacing-2);
+}
+
+.gap-4 {
+  gap: var(--spacing-4);
+}
+
+.mb-2 {
+  margin-bottom: var(--spacing-2);
+}
+
+.mb-4 {
+  margin-bottom: var(--spacing-4);
+}
+
+.mt-4 {
+  margin-top: var(--spacing-4);
+}
+
+.ml-2 {
+  margin-left: var(--spacing-2);
+}
+
+.w-full {
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* View-specific styles that aren't in components.css */
+.attendance-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-4);
+}
+
+.date-selector {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.search-filter {
+  position: relative;
+  flex: 1;
+  max-width: 300px;
+}
+
+.search-filter input {
+  width: 100%;
+  padding: var(--spacing-2) var(--spacing-4);
+  padding-right: var(--spacing-10);
+  border: 1px solid var(--border-color);
+  border-radius: var(--input-border-radius);
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+}
+
+.search-filter button {
+  position: absolute;
+  right: var(--spacing-2);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.date-range-filter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.date-inputs {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  h1 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  h2 {
+    font-size: var(--font-size-xl);
+  }
+  
+  h3 {
+    font-size: var(--font-size-lg);
+  }
+  
+  .date-display {
+    font-size: var(--font-size-md);
+  }
+  
+  .attendance-actions,
+  .date-inputs {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-2);
+  }
+  
+  .date-selector {
+    width: 100%;
+  }
+  
+  .date-selector input {
+    flex: 1;
+  }
+  
+  .search-filter {
+    max-width: 100%;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .sidebar,
+  .app-header,
+  .section-actions,
+  .pagination,
+  .filter-container {
+    display: none !important;
+  }
+  
+  .main-content {
+    margin-left: 0 !important;
+  }
+  
+  .section {
+    padding: 0 !important;
+  }
+  
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+  
+  .card-bg,
+  .stat-card,
+  .dashboard-card {
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+  }
+  
+  .section-header {
+    margin-bottom: 10px !important;
+  }
+  
+  .section-header h1 {
+    font-size: 18pt !important;
+  }
+  
+  @page {
+    margin: 1cm;
+  }
+}

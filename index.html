@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/vite.svg">
+  <title>StaffTrack • Employee Management System</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="currentColor"/>
+          </svg>
+          <span>StaffTrack</span>
+        </div>
+        <button class="menu-toggle" id="menuToggle">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="active"><a href="#dashboard" data-section="dashboard"><svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" fill="currentColor"/></svg>Dashboard</a></li>
+          <li><a href="#employees" data-section="employees"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" fill="currentColor"/></svg>Employees</a></li>
+          <li><a href="#attendance" data-section="attendance"><svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z" fill="currentColor"/></svg>Attendance</a></li>
+          <li><a href="#punishments" data-section="punishments"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" fill="currentColor"/></svg>Punishments</a></li>
+          <li><a href="#reports" data-section="reports"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" fill="currentColor"/></svg>Reports</a></li>
+          <li><a href="#settings" data-section="settings"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" fill="currentColor"/></svg>Settings</a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="theme-toggle">
+          <label class="switch">
+            <input type="checkbox" id="themeToggle">
+            <span class="slider round"></span>
+          </label>
+          <span>Dark Mode</span>
+        </div>
+        <div class="user-profile">
+          <img src="https://i.pravatar.cc/150?img=1" alt="Admin User">
+          <div>
+            <p class="user-name">Admin User</p>
+            <button id="logoutBtn" class="text-button">Logout</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="app-header">
+        <div class="header-search">
+          <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="currentColor"/></svg>
+          <input type="text" placeholder="Search employees, reports..." id="searchInput">
+        </div>
+        <div class="header-actions">
+          <button class="icon-button" id="notificationsBtn">
+            <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" fill="currentColor"/></svg>
+            <span class="badge">3</span>
+          </button>
+          <button class="icon-button" id="helpBtn">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" fill="currentColor"/></svg>
+          </button>
+          <button class="primary-button" id="addEmployeeBtn">
+            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="currentColor"/></svg>
+            Add Employee
+          </button>
+        </div>
+      </header>
+
+      <div class="section-container">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+          <div class="section-header">
+            <h1>Dashboard</h1>
+            <p class="date-display" id="currentDate"></p>
+          </div>
+          
+          <div class="stats-container">
+            <div class="stat-card">
+              <div class="stat-icon employee-icon">
+                <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" fill="currentColor"/></svg>
+              </div>
+              <div class="stat-info">
+                <h3>Total Employees</h3>
+                <p class="stat-value" id="totalEmployees">0</p>
+                <p class="stat-change positive">+5% from last month</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon attendance-icon">
+                <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z" fill="currentColor"/></svg>
+              </div>
+              <div class="stat-info">
+                <h3>Present Today</h3>
+                <p class="stat-value" id="presentToday">0</p>
+                <p class="stat-change">92% of workforce</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon salary-icon">
+                <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" fill="currentColor"/></svg>
+              </div>
+              <div class="stat-info">
+                <h3>Total Payroll</h3>
+                <p class="stat-value" id="totalPayroll">$0</p>
+                <p class="stat-change negative">-2.3% deductions</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon punishment-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" fill="currentColor"/></svg>
+              </div>
+              <div class="stat-info">
+                <h3>Active Punishments</h3>
+                <p class="stat-value" id="activePunishments">0</p>
+                <p class="stat-change negative">+3 this week</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-grid">
+            <div class="dashboard-card attendance-chart">
+              <div class="card-header">
+                <h3>Attendance Overview</h3>
+                <div class="card-actions">
+                  <select id="attendanceTimeframe">
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="yearly">Yearly</option>
+                  </select>
+                </div>
+              </div>
+              <div class="chart-container">
+                <canvas id="attendanceChart"></canvas>
+              </div>
+            </div>
+            
+            <div class="dashboard-card punishment-stats">
+              <div class="card-header">
+                <h3>Punishment Categories</h3>
+                <button class="icon-button" id="refreshPunishmentStats">
+                  <svg viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" fill="currentColor"/></svg>
+                </button>
+              </div>
+              <div class="chart-container">
+                <canvas id="punishmentChart"></canvas>
+              </div>
+            </div>
+
+            <div class="dashboard-card recent-activity">
+              <div class="card-header">
+                <h3>Recent Activity</h3>
+                <button class="text-button view-all-btn">View All</button>
+              </div>
+              <ul class="activity-list" id="activityList">
+                <li class="activity-item">
+                  <div class="activity-icon add-icon">
+                    <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="currentColor"/></svg>
+                  </div>
+                  <div class="activity-content">
+                    <p><strong>Sarah Johnson</strong> was added to the system</p>
+                    <span class="activity-time">Just now</span>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-icon punishment-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" fill="currentColor"/></svg>
+                  </div>
+                  <div class="activity-content">
+                    <p><strong>Mike Peterson</strong> received a late arrival punishment</p>
+                    <span class="activity-time">2 hours ago</span>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-icon edit-icon">
+                    <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="currentColor"/></svg>
+                  </div>
+                  <div class="activity-content">
+                    <p><strong>Admin</strong> updated salary structure</p>
+                    <span class="activity-time">Yesterday</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="dashboard-card top-performers">
+              <div class="card-header">
+                <h3>Top Performers</h3>
+                <button class="text-button view-all-btn">View All</button>
+              </div>
+              <ul class="employee-list" id="topPerformersList">
+                <!-- Will be populated by JavaScript -->
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Employees Section -->
+        <section id="employees" class="section">
+          <div class="section-header">
+            <h1>Employees</h1>
+            <div class="section-actions">
+              <button class="secondary-button" id="importEmployeesBtn">
+                <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/></svg>
+                Import
+              </button>
+              <button class="secondary-button" id="exportEmployeesBtn">
+                <svg viewBox="0 0 24 24"><path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2v9.67z" fill="currentColor"/></svg>
+                Export
+              </button>
+              <button class="primary-button" id="addEmployeeBtn2">
+                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="currentColor"/></svg>
+                Add Employee
+              </button>
+            </div>
+          </div>
+
+          <div class="filter-container">
+            <div class="filter-group">
+              <label for="departmentFilter">Department</label>
+              <select id="departmentFilter">
+                <option value="all">All Departments</option>
+                <option value="engineering">Engineering</option>
+                <option value="marketing">Marketing</option>
+                <option value="sales">Sales</option>
+                <option value="hr">Human Resources</option>
+                <option value="finance">Finance</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="statusFilter">Status</label>
+              <select id="statusFilter">
+                <option value="all">All Status</option>
+                <option value="active">Active</option>
+                <option value="onLeave">On Leave</option>
+                <option value="suspended">Suspended</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="sortBy">Sort By</label>
+              <select id="sortBy">
+                <option value="nameAsc">Name (A-Z)</option>
+                <option value="nameDesc">Name (Z-A)</option>
+                <option value="salaryHigh">Salary (High-Low)</option>
+                <option value="salaryLow">Salary (Low-High)</option>
+                <option value="recent">Recently Added</option>
+              </select>
+            </div>
+            <div class="search-filter">
+              <input type="text" id="employeeSearch" placeholder="Search employees...">
+              <button class="icon-button" id="searchEmployeesBtn">
+                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="currentColor"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="employees-grid" id="employeesGrid">
+            <!-- Will be populated by JavaScript -->
+          </div>
+
+          <div class="pagination">
+            <button class="pagination-button" id="prevPage" disabled>
+              <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/></svg>
+              Previous
+            </button>
+            <div class="pagination-info">
+              Page <span id="currentPage">1</span> of <span id="totalPages">1</span>
+            </div>
+            <button class="pagination-button" id="nextPage">
+              Next
+              <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="currentColor"/></svg>
+            </button>
+          </div>
+        </section>
+
+        <!-- Other sections (attendance, punishments, reports, settings) will be similar in structure -->
+        <section id="attendance" class="section">
+          <div class="section-header">
+            <h1>Attendance Tracking</h1>
+            <p class="date-display" id="attendanceDate"></p>
+          </div>
+          <!-- Attendance content will go here -->
+          <div class="attendance-container">
+            <div class="attendance-actions">
+              <button class="primary-button" id="markAttendanceBtn">Mark Today's Attendance</button>
+              <div class="date-selector">
+                <label for="attendanceViewDate">View Date:</label>
+                <input type="date" id="attendanceViewDate">
+              </div>
+            </div>
+            
+            <div class="attendance-stats">
+              <div class="stat-pill present">
+                <span class="stat-value" id="presentCount">0</span>
+                <span class="stat-label">Present</span>
+              </div>
+              <div class="stat-pill absent">
+                <span class="stat-value" id="absentCount">0</span>
+                <span class="stat-label">Absent</span>
+              </div>
+              <div class="stat-pill late">
+                <span class="stat-value" id="lateCount">0</span>
+                <span class="stat-label">Late</span>
+              </div>
+              <div class="stat-pill leave">
+                <span class="stat-value" id="leaveCount">0</span>
+                <span class="stat-label">On Leave</span>
+              </div>
+            </div>
+            
+            <div class="attendance-table-container">
+              <table class="data-table" id="attendanceTable">
+                <thead>
+                  <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Status</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
+                    <th>Hours</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Will be populated by JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="punishments" class="section">
+          <div class="section-header">
+            <h1>Punishment Management</h1>
+            <button class="primary-button" id="addPunishmentBtn">
+              <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="currentColor"/></svg>
+              Add Punishment
+            </button>
+          </div>
+          
+          <div class="punishment-container">
+            <div class="filter-container">
+              <div class="filter-group">
+                <label for="punishmentTypeFilter">Type</label>
+                <select id="punishmentTypeFilter">
+                  <option value="all">All Types</option>
+                  <option value="late">Late Arrival</option>
+                  <option value="absence">Unauthorized Absence</option>
+                  <option value="performance">Poor Performance</option>
+                  <option value="conduct">Misconduct</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="punishmentStatusFilter">Status</label>
+                <select id="punishmentStatusFilter">
+                  <option value="all">All Status</option>
+                  <option value="active">Active</option>
+                  <option value="pending">Pending</option>
+                  <option value="completed">Completed</option>
+                </select>
+              </div>
+              <div class="date-range-filter">
+                <label>Date Range</label>
+                <div class="date-inputs">
+                  <input type="date" id="punishmentStartDate">
+                  <span>to</span>
+                  <input type="date" id="punishmentEndDate">
+                </div>
+              </div>
+            </div>
+            
+            <div class="punishment-table-container">
+              <table class="data-table" id="punishmentTable">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Employee</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Will be populated by JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="reports" class="section">
+          <div class="section-header">
+            <h1>Reports</h1>
+            <div class="section-actions">
+              <button class="secondary-button" id="exportReportBtn">
+                <svg viewBox="0 0 24 24"><path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2v9.67z" fill="currentColor"/></svg>
+                Export Report
+              </button>
+              <button class="secondary-button" id="printReportBtn">
+                <svg viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z" fill="currentColor"/></svg>
+                Print
+              </button>
+            </div>
+          </div>
+          
+          <div class="report-container">
+            <div class="report-sidebar">
+              <h3>Report Types</h3>
+              <ul class="report-types">
+                <li class="active" data-report="attendanceSummary">Attendance Summary</li>
+                <li data-report="salaryReport">Salary Report</li>
+                <li data-report="punishmentReport">Punishment Report</li>
+                <li data-report="departmentPerformance">Department Performance</li>
+                <li data-report="employeeActivity">Employee Activity</li>
+                <li data-report="customReport">Custom Report</li>
+              </ul>
+              
+              <div class="report-config">
+                <h3>Configure Report</h3>
+                <div class="form-group">
+                  <label for="reportTimeframe">Timeframe</label>
+                  <select id="reportTimeframe">
+                    <option value="thisWeek">This Week</option>
+                    <option value="thisMonth">This Month</option>
+                    <option value="lastMonth">Last Month</option>
+                    <option value="thisQuarter">This Quarter</option>
+                    <option value="thisYear">This Year</option>
+                    <option value="custom">Custom Range</option>
+                  </select>
+                </div>
+                <div class="form-group" id="customDateRange" style="display: none;">
+                  <label>Custom Range</label>
+                  <input type="date" id="reportStartDate">
+                  <input type="date" id="reportEndDate">
+                </div>
+                <div class="form-group">
+                  <label for="reportFormat">Format</label>
+                  <select id="reportFormat">
+                    <option value="table">Table</option>
+                    <option value="chart">Chart</option>
+                    <option value="both">Both</option>
+                  </select>
+                </div>
+                <button class="primary-button" id="generateReportBtn">Generate Report</button>
+              </div>
+            </div>
+            
+            <div class="report-content" id="reportContent">
+              <div class="report-placeholder">
+                <svg viewBox="0 0 24 24" width="64" height="64"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" fill="currentColor"/></svg>
+                <p>Select a report type and click "Generate Report" to view data</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="settings" class="section">
+          <div class="section-header">
+            <h1>Settings</h1>
+          </div>
+          
+          <div class="settings-container">
+            <div class="settings-sidebar">
+              <ul class="settings-menu">
+                <li class="active" data-settings="general">General Settings</li>
+                <li data-settings="company">Company Profile</li>
+                <li data-settings="departments">Departments</li>
+                <li data-settings="salary">Salary Structure</li>
+                <li data-settings="punishment">Punishment Rules</li>
+                <li data-settings="notifications">Notifications</li>
+                <li data-settings="backup">Backup & Restore</li>
+              </ul>
+            </div>
+            
+            <div class="settings-content">
+              <div id="general" class="settings-panel active">
+                <h2>General Settings</h2>
+                <form id="generalSettingsForm">
+                  <div class="form-group">
+                    <label for="systemLanguage">System Language</label>
+                    <select id="systemLanguage">
+                      <option value="en">English</option>
+                      <option value="es">Spanish</option>
+                      <option value="fr">French</option>
+                      <option value="de">German</option>
+                      <option value="zh">Chinese</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="dateFormat">Date Format</label>
+                    <select id="dateFormat">
+                      <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                      <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                      <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="timeFormat">Time Format</label>
+                    <select id="timeFormat">
+                      <option value="12">12 Hour</option>
+                      <option value="24">24 Hour</option>
+                    </select>
+                  </div>
+                  <div class="form-group switch-group">
+                    <label for="autoLogout">Auto Logout (after 30 minutes)</label>
+                    <label class="switch">
+                      <input type="checkbox" id="autoLogout" checked>
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+                  <button type="submit" class="primary-button">Save Changes</button>
+                </form>
+              </div>
+              
+              <!-- Other settings panels will be here -->
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modals -->
+  <div class="modal" id="addEmployeeModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Add New Employee</h2>
+        <button class="close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="addEmployeeForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="employeeFirstName">First Name</label>
+              <input type="text" id="employeeFirstName" required>
+            </div>
+            <div class="form-group">
+              <label for="employeeLastName">Last Name</label>
+              <input type="text" id="employeeLastName" required>
+            </div>
+            <div class="form-group">
+              <label for="employeeEmail">Email</label>
+              <input type="email" id="employeeEmail" required>
+            </div>
+            <div class="form-group">
+              <label for="employeePhone">Phone</label>
+              <input type="tel" id="employeePhone">
+            </div>
+            <div class="form-group">
+              <label for="employeeDepartment">Department</label>
+              <select id="employeeDepartment" required>
+                <option value="">Select Department</option>
+                <option value="engineering">Engineering</option>
+                <option value="marketing">Marketing</option>
+                <option value="sales">Sales</option>
+                <option value="hr">Human Resources</option>
+                <option value="finance">Finance</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="employeePosition">Position</label>
+              <input type="text" id="employeePosition" required>
+            </div>
+            <div class="form-group">
+              <label for="employeeStartDate">Start Date</label>
+              <input type="date" id="employeeStartDate" required>
+            </div>
+            <div class="form-group">
+              <label for="employeeSalary">Base Salary</label>
+              <input type="number" id="employeeSalary" required min="0" step="100">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="employeeAddress">Address</label>
+            <textarea id="employeeAddress" rows="2"></textarea>
+          </div>
+          <div class="form-group switch-group">
+            <label for="employeeStatus">Active Status</label>
+            <label class="switch">
+              <input type="checkbox" id="employeeStatus" checked>
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="secondary-button cancel-modal">Cancel</button>
+        <button class="primary-button" id="saveEmployeeBtn">Save Employee</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="addPunishmentModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Add Punishment</h2>
+        <button class="close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="addPunishmentForm">
+          <div class="form-group">
+            <label for="punishmentEmployee">Employee</label>
+            <select id="punishmentEmployee" required>
+              <option value="">Select Employee</option>
+              <!-- Will be populated by JavaScript -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="punishmentType">Punishment Type</label>
+            <select id="punishmentType" required>
+              <option value="">Select Type</option>
+              <option value="late">Late Arrival</option>
+              <option value="absence">Unauthorized Absence</option>
+              <option value="performance">Poor Performance</option>
+              <option value="conduct">Misconduct</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="punishmentDate">Date</label>
+            <input type="date" id="punishmentDate" required>
+          </div>
+          <div class="form-group">
+            <label for="punishmentAmount">Deduction Amount</label>
+            <input type="number" id="punishmentAmount" required min="0">
+          </div>
+          <div class="form-group">
+            <label for="punishmentDescription">Description</label>
+            <textarea id="punishmentDescription" rows="3" required></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="secondary-button cancel-modal">Cancel</button>
+        <button class="primary-button" id="savePunishmentBtn">Save Punishment</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="employeeDetailModal">
+    <div class="modal-content large-modal">
+      <div class="modal-header">
+        <h2>Employee Details</h2>
+        <button class="close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="employee-detail-container">
+          <!-- Will be populated by JavaScript -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="danger-button" id="deleteEmployeeBtn">Delete Employee</button>
+        <button class="secondary-button" id="editEmployeeBtn">Edit Details</button>
+        <button class="primary-button close-modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">
+    <div class="toast-content">
+      <span class="toast-icon">
+        <svg viewBox="0 0 24 24" class="success-icon"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+        <svg viewBox="0 0 24 24" class="error-icon"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"/></svg>
+        <svg viewBox="0 0 24 24" class="warning-icon"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" fill="currentColor"/></svg>
+        <svg viewBox="0 0 24 24" class="info-icon"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor"/></svg>
+      </span>
+      <span class="toast-message">Operation completed successfully</span>
+    </div>
+    <button class="toast-close">&times;</button>
+  </div>
+
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/employees.js"></script>
+  <script src="js/attendance.js"></script>
+  <script src="js/punishment.js"></script>
+  <script src="js/reports.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

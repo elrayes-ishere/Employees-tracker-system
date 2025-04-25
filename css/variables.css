@@ -1,0 +1,152 @@
+:root {
+  /* Color System */
+  --color-primary: #0A84FF;
+  --color-primary-light: #5EB2FF;
+  --color-primary-dark: #0063CC;
+  --color-primary-transparent: rgba(10, 132, 255, 0.1);
+
+  --color-secondary: #5E5CE6;
+  --color-secondary-light: #8A88FF;
+  --color-secondary-dark: #4140A8;
+
+  --color-accent: #30D158;
+  --color-accent-light: #6FE790;
+  --color-accent-dark: #179A3B;
+
+  --color-warning: #FF9F0A;
+  --color-warning-light: #FFB340;
+  --color-warning-dark: #C77700;
+
+  --color-danger: #FF3B30;
+  --color-danger-light: #FF6D62;
+  --color-danger-dark: #C9211B;
+
+  --color-info: #64D2FF;
+  --color-info-light: #9BE4FF;
+  --color-info-dark: #32A4D9;
+
+  /* Neutral Colors */
+  --color-white: #FFFFFF;
+  --color-gray-50: #F9FAFB;
+  --color-gray-100: #F2F4F7;
+  --color-gray-200: #E3E8EF;
+  --color-gray-300: #CDD5E0;
+  --color-gray-400: #9AA4B8;
+  --color-gray-500: #6C7793;
+  --color-gray-600: #4D5875;
+  --color-gray-700: #394052;
+  --color-gray-800: #212936;
+  --color-gray-900: #121826;
+  --color-black: #000000;
+
+  /* Light Theme */
+  --body-bg: var(--color-gray-50);
+  --card-bg: var(--color-white);
+  --sidebar-bg: var(--color-white);
+  --header-bg: var(--color-white);
+  --border-color: var(--color-gray-200);
+  --text-primary: var(--color-gray-900);
+  --text-secondary: var(--color-gray-600);
+  --text-tertiary: var(--color-gray-500);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.7;
+
+  /* Spacing */
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+
+  /* Borders */
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.375rem;
+  --border-radius-lg: 0.5rem;
+  --border-radius-xl: 0.75rem;
+  --border-radius-2xl: 1rem;
+  --border-radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 350ms ease;
+
+  /* Z-indices */
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1020;
+  --z-index-fixed: 1030;
+  --z-index-modal-backdrop: 1040;
+  --z-index-modal: 1050;
+  --z-index-popover: 1060;
+  --z-index-tooltip: 1070;
+
+  /* Layout */
+  --sidebar-width: 260px;
+  --sidebar-width-collapsed: 80px;
+  --header-height: 64px;
+  --content-max-width: 1600px;
+
+  /* Component Specific */
+  --btn-border-radius: var(--border-radius-md);
+  --card-border-radius: var(--border-radius-lg);
+  --input-border-radius: var(--border-radius-md);
+}
+
+/* Dark Theme Variables */
+.dark-theme {
+  --body-bg: var(--color-gray-900);
+  --card-bg: var(--color-gray-800);
+  --sidebar-bg: var(--color-gray-800);
+  --header-bg: var(--color-gray-800);
+  --border-color: var(--color-gray-700);
+  --text-primary: var(--color-gray-50);
+  --text-secondary: var(--color-gray-300);
+  --text-tertiary: var(--color-gray-400);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light-theme) {
+    --body-bg: var(--color-gray-900);
+    --card-bg: var(--color-gray-800);
+    --sidebar-bg: var(--color-gray-800);
+    --header-bg: var(--color-gray-800);
+    --border-color: var(--color-gray-700);
+    --text-primary: var(--color-gray-50);
+    --text-secondary: var(--color-gray-300);
+    --text-tertiary: var(--color-gray-400);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  }
+}
