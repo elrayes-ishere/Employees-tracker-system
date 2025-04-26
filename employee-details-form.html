@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Details and Punishment History</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .employee-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      margin-bottom: 30px;
+    }
+    
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      border-bottom: 1px solid #eaeaea;
+      padding-bottom: 15px;
+    }
+    
+    .card-header h2 {
+      font-size: 24px;
+      margin: 0;
+      color: #2c3e50;
+      font-weight: 600;
+    }
+    
+    .employee-badge {
+      background-color: #e3f2fd;
+      color: #1565c0;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    
+    .employee-info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+    
+    .info-group {
+      margin-bottom: 15px;
+    }
+    
+    .info-label {
+      font-size: 13px;
+      text-transform: uppercase;
+      color: #6c757d;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+    
+    .info-value {
+      font-size: 16px;
+      font-weight: 500;
+      color: #2c3e50;
+    }
+    
+    .duration-card {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .duration-item {
+      text-align: center;
+      padding: 10px 20px;
+    }
+    
+    .duration-item:not(:last-child) {
+      border-right: 1px solid #dee2e6;
+    }
+    
+    .duration-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: #0d6efd;
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    .duration-label {
+      font-size: 14px;
+      color: #495057;
+      font-weight: 500;
+    }
+    
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 20px 0 15px;
+      color: #2c3e50;
+    }
+    
+    .punishment-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    
+    .punishment-table th {
+      background-color: #f8f9fa;
+      padding: 12px 15px;
+      text-align: left;
+      font-weight: 600;
+      color: #495057;
+      border-bottom: 2px solid #dee2e6;
+    }
+    
+    .punishment-table td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #e9ecef;
+    }
+    
+    .punishment-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .punishment-reason {
+      max-width: 300px;
+    }
+    
+    .status-badge {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    
+    .status-active {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+    }
+    
+    .status-completed {
+      background-color: #e0f2f1;
+      color: #00796b;
+    }
+    
+    .action-button {
+      padding: 8px 15px;
+      border-radius: 5px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+    }
+    
+    .btn-primary {
+      background-color: #0d6efd;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background-color: #0b5ed7;
+    }
+    
+    .btn-danger {
+      background-color: #dc3545;
+      color: white;
+    }
+    
+    .btn-danger:hover {
+      background-color: #bb2d3b;
+    }
+    
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .stat-card {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: #0d6efd;
+      margin-bottom: 5px;
+    }
+    
+    .stat-label {
+      font-size: 14px;
+      color: #6c757d;
+      font-weight: 500;
+    }
+    
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    @media (max-width: 992px) {
+      .employee-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .duration-card {
+        flex-direction: column;
+      }
+      
+      .duration-item {
+        border-right: none !important;
+        border-bottom: 1px solid #dee2e6;
+        padding: 15px 0;
+      }
+      
+      .duration-item:last-child {
+        border-bottom: none;
+      }
+      
+      .employee-info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="employee-card">
+      <div class="card-header">
+        <h2>Employee Details</h2>
+        <span class="employee-badge">Full-time</span>
+      </div>
+      
+      <div class="employee-info-grid">
+        <div class="info-group">
+          <div class="info-label">Employee ID</div>
+          <div class="info-value">EMP-10045</div>
+        </div>
+        
+        <div class="info-group">
+          <div class="info-label">Full Name</div>
+          <div class="info-value">John Doe</div>
+        </div>
+        
+        <div class="info-group">
+          <div class="info-label">Department</div>
+          <div class="info-value">Software Development</div>
+        </div>
+        
+        <div class="info-group">
+          <div class="info-label">Position</div>
+          <div class="info-value">Senior Developer</div>
+        </div>
+        
+        <div class="info-group">
+          <div class="info-label">Email</div>
+          <div class="info-value">john.doe@company.com</div>
+        </div>
+        
+        <div class="info-group">
+          <div class="info-label">Phone</div>
+          <div class="info-value">(555) 123-4567</div>
+        </div>
+        
+        <div class="info-group">
+          <div class="info-label">Address</div>
+          <div class="info-value">123 Main Street, Suite 400, Cityville</div>
+        </div>
+        
+        <div class="info-group">
+          <div class="info-label">Start Date</div>
+          <div class="info-value">March 15, 2023</div>
+        </div>
+        
+        <div class="info-group">
+          <div class="info-label">Current Salary</div>
+          <div class="info-value">$65,000</div>
+        </div>
+      </div>
+      
+      <h3 class="section-title">Employment Duration</h3>
+      <div class="duration-card">
+        <div class="duration-item">
+          <span class="duration-value">2</span>
+          <span class="duration-label">Years</span>
+        </div>
+        <div class="duration-item">
+          <span class="duration-value">1</span>
+          <span class="duration-label">Month</span>
+        </div>
+        <div class="duration-item">
+          <span class="duration-value">12</span>
+          <span class="duration-label">Days</span>
+        </div>
+        <div class="duration-item">
+          <span class="duration-value">96%</span>
+          <span class="duration-label">Attendance Rate</span>
+        </div>
+      </div>
+      
+      <div class="stats-container">
+        <div class="stat-card">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Total Punishments</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">2</div>
+          <div class="stat-label">Active Punishments</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">$2,500</div>
+          <div class="stat-label">Total Penalties</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">8</div>
+          <div class="stat-label">Warnings</div>
+        </div>
+      </div>
+      
+      <h3 class="section-title">Punishment History</h3>
+      <table class="punishment-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Quantity</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th>Applied By</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Apr 15, 2025</td>
+            <td>Salary Reduction</td>
+            <td>$500</td>
+            <td class="punishment-reason">Repeated tardiness and failure to meet project deadlines</td>
+            <td><span class="status-badge status-active">Active</span></td>
+            <td>Sarah Johnson</td>
+            <td>
+              <button class="action-button btn-danger">Revoke</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Mar 10, 2025</td>
+            <td>Warning</td>
+            <td>2</td>
+            <td class="punishment-reason">Inappropriate behavior during client meeting</td>
+            <td><span class="status-badge status-active">Active</span></td>
+            <td>Michael Smith</td>
+            <td>
+              <button class="action-button btn-danger">Revoke</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Jan 25, 2025</td>
+            <td>Probation</td>
+            <td>30 days</td>
+            <td class="punishment-reason">Poor performance reviews for Q4 2024</td>
+            <td><span class="status-badge status-completed">Completed</span></td>
+            <td>Robert Wilson</td>
+            <td>
+              <button class="action-button btn-primary">View Details</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Nov 05, 2024</td>
+            <td>Salary Reduction</td>
+            <td>$1,000</td>
+            <td class="punishment-reason">Violation of company security policy</td>
+            <td><span class="status-badge status-completed">Completed</span></td>
+            <td>Sarah Johnson</td>
+            <td>
+              <button class="action-button btn-primary">View Details</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Aug 18, 2024</td>
+            <td>Warning</td>
+            <td>1</td>
+            <td class="punishment-reason">Failed to attend mandatory training session</td>
+            <td><span class="status-badge status-completed">Completed</span></td>
+            <td>Michael Smith</td>
+            <td>
+              <button class="action-button btn-primary">View Details</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div class="form-actions">
+        <button class="action-button btn-primary">Apply New Punishment</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
